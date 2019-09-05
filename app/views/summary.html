@@ -1,0 +1,75 @@
+{% from "hmrc/components/page-heading/macro.njk"  import hmrcPageHeading %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% extends "layout.html" %}
+
+{% block content %}
+{{ hmrcPageHeading({
+  text: "Check your answers",
+  section: "Personal details"
+}) }}
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Name"
+      },
+      value: {
+        text: data.name
+      },
+      actions: {
+        items: [
+          {
+            href: "/name",
+            text: "Change",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Phone number"
+      },
+      value: {
+        text: data['phone-number']
+      },
+      actions: {
+        items: [
+          {
+            href: "/phone-number",
+            text: "Change",
+            visuallyHiddenText: "phone number"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Address"
+      },
+      value: {
+        html: data.formattedAddress
+      },
+      actions: {
+        items: [
+          {
+            href: "/address",
+            text: "Change",
+            visuallyHiddenText: "address"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+<form action="/confirm" method="post">
+  <h2 class="govuk-heading-m">Now send your application</h2>
+
+  <p class="govuk-body">By submitting this notification you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+
+  {{govukButton({text: "Accept and send"})}}
+</form>
+{% endblock %}

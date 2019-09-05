@@ -1,0 +1,23 @@
+{% from "hmrc/components/page-heading/macro.njk"  import hmrcPageHeading %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% extends "layout.html" %}
+
+{% block content %}
+<form action="/summary" method="post">
+{{ hmrcPageHeading({
+  text: "Your address",
+  section: "Personal details"
+}) }}
+
+{{ govukTextarea({
+  label: {
+    text: "What is your address?"
+  },
+  id: "address",
+  name: "address"
+}) }}
+
+{{ govukButton({text: "Save and continue"}) }}
+</form>
+{% endblock %}

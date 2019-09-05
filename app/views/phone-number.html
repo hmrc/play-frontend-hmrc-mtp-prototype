@@ -1,0 +1,23 @@
+{% from "hmrc/components/page-heading/macro.njk"  import hmrcPageHeading %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% extends "layout.html" %}
+
+{% block content %}
+<form action="/address" method="post">
+{{ hmrcPageHeading({
+  text: "Your phone number",
+  section: "Personal details"
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "What is your phone number?"
+  },
+  id: "phone-number",
+  name: "phone-number"
+}) }}
+
+{{ govukButton({text: "Save and continue"}) }}
+</form>
+{% endblock %}

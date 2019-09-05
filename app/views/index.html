@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">{{serviceName}}</h1>
+
+      <p class="govuk-body">Use this service to:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>enter your personal details</li>
+        <li>be told they’ve been saved even though they haven’t</li>
+        <li>try out different ways of creating services</li>
+      </ul>
+
+      <p class="govuk-body">Registering takes around 1 minute.</p>
+
+      {{ govukButton({
+        text: "Start now",
+        href: "/name",
+        isStartButton: true
+      }) }}
+
+    </div>
+
+  </div>
+{% endblock %}
