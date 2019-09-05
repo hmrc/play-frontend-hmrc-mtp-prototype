@@ -3,21 +3,29 @@
 
 {% extends "layout.html" %}
 
+{% block pageTitle %}
+Your phone number – Personal details – {{serviceName}} – GOV.UK
+{% endblock %}
+
 {% block content %}
-<form action="/address" method="post">
-{{ hmrcPageHeading({
-  text: "Your phone number",
-  section: "Personal details"
-}) }}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="/address" method="post">
+      {{ hmrcPageHeading({
+        text: "Your phone number",
+        section: "Personal details"
+      }) }}
 
-{{ govukInput({
-  label: {
-    text: "What is your phone number?"
-  },
-  id: "phone-number",
-  name: "phone-number"
-}) }}
+      {{ govukInput({
+        label: {
+          text: "What is your phone number?"
+        },
+        id: "phone-number",
+        name: "phone-number"
+      }) }}
 
-{{ govukButton({text: "Save and continue"}) }}
-</form>
+      {{ govukButton({text: "Save and continue"}) }}
+    </form>
+  </div>
+</div>
 {% endblock %}

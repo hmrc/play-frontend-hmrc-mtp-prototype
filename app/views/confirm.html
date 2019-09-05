@@ -3,25 +3,28 @@
 
 {% extends "layout.html" %}
 
+{% block pageTitle %}
+Application Complete – Personal details – {{serviceName}} – GOV.UK
+{% endblock %}
 {% block content %}
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      {{ govukPanel({
-        titleText: "Application complete",
-        html: "Your reference number<br><strong>HDJ2123F</strong>"
-      }) }}
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukPanel({
+      titleText: "Application complete",
+      html: "Your reference number<br><strong>HDJ2123F</strong>"
+    }) }}
 
-      <p class="govuk-body">We have sent you a confirmation email.</p>
+    <p class="govuk-body">We have sent you a confirmation email.</p>
 
-      <h2 class="govuk-heading-m">What happens next</h2>
+    <h2 class="govuk-heading-m">What happens next</h2>
 
-      <p class="govuk-body">
-        We’ve sent your application to Fictional Ministry of Facts.
-      </p>
-      <p class="govuk-body">
-        They will contact you either to confirm your registration, or to ask for more information.
-      </p>
+    <p class="govuk-body">
+      We’ve sent your application to Fictional Ministry of Facts.
+    </p>
+    <p class="govuk-body">
+      They will contact you either to confirm your registration, or to ask for more information.
+    </p>
 
-    </div>
   </div>
+</div>
 {% endblock %}
