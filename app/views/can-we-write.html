@@ -7,33 +7,41 @@
 Can we write to you – Personal details – {{serviceName}} – GOV.UK
 {% endblock %}
 
+{% block beforeContent %}
+{{
+  govukBackLink({
+    href:'/address'
+  })
+}}
+{% endblock %}
+
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <form action="/summary" method="post">
       {{ hmrcPageHeading({
-        text: "Contact preferences",
-        section: "Personal details"
+      text: "Contact preferences",
+      section: "Personal details"
       }) }}
 
       {{ govukRadios({
-        fieldset: {
-          legend: {
-            text: "Can we write to you?"
-          }
-        },
-        items: [
-          {
-            value: "Yes",
-            text: "Yes"
-          },
-          {
-            value: "No",
-            text: "No"
-          }
-        ],
-        id: "canWeWrite",
-        name: "canWeWrite"
+      fieldset: {
+      legend: {
+      text: "Can we write to you?"
+      }
+      },
+      items: [
+      {
+      value: "Yes",
+      text: "Yes"
+      },
+      {
+      value: "No",
+      text: "No"
+      }
+      ],
+      id: "canWeWrite",
+      name: "canWeWrite"
       }) }}
 
       {{ govukButton({text: "Save and continue"}) }}
