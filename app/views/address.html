@@ -14,7 +14,13 @@ Your address – Personal details – {{serviceName}} – GOV.UK
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form action="/can-we-write" method="post">
+    <form action="/address" method="post">
+      {% if errors %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: preparedErrorList
+        }) }}
+      {% endif %}
       {{ hmrcPageHeading({
         text: "Your address",
         section: "Personal details"
@@ -25,6 +31,7 @@ Your address – Personal details – {{serviceName}} – GOV.UK
           text: "What is your address?"
         },
         value: data.address,
+        errorMessage: errors.address,
         id: "address",
         name: "address"
       }) }}

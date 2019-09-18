@@ -14,7 +14,13 @@ Your name – Personal details – {{serviceName}} – GOV.UK
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form action="/phone-number" method="post">
+    <form action="/name" method="post">
+      {% if errors %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: preparedErrorList
+        }) }}
+      {% endif %}
       {{ hmrcPageHeading({
         text: "Your name",
         section: "Personal details"
@@ -24,6 +30,7 @@ Your name – Personal details – {{serviceName}} – GOV.UK
         label: {
           text: "What is your name?"
         },
+        errorMessage: errors.name,
         value: data.name,
         id: "name",
         name: "name"

@@ -14,7 +14,13 @@ Your phone number – Personal details – {{serviceName}} – GOV.UK
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form action="/address" method="post">
+    <form action="/phone-number" method="post">
+      {% if errors %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: preparedErrorList
+        }) }}
+      {% endif %}
       {{ hmrcPageHeading({
         text: "Your phone number",
         section: "Personal details"
@@ -25,6 +31,7 @@ Your phone number – Personal details – {{serviceName}} – GOV.UK
           text: "What is your phone number?"
         },
         value: data.phoneNumber,
+        errorMessage: errors['phone-number'],
         id: "phone-number",
         name: "phoneNumber"
       }) }}

@@ -18,30 +18,39 @@ Can we write to you – Personal details – {{serviceName}} – GOV.UK
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form action="/summary" method="post">
+    <form action="/can-we-write" method="post">
+      {% if errors %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: preparedErrorList
+        }) }}
+      {% endif %}
       {{ hmrcPageHeading({
-      text: "Contact preferences",
-      section: "Personal details"
+        text: "Contact preferences",
+        section: "Personal details"
       }) }}
 
       {{ govukRadios({
-      fieldset: {
-      legend: {
-      text: "Can we write to you?"
-      }
-      },
-      items: [
-      {
-      value: "Yes",
-      text: "Yes"
-      },
-      {
-      value: "No",
-      text: "No"
-      }
-      ],
-      id: "canWeWrite",
-      name: "canWeWrite"
+        fieldset: {
+          legend: {
+            text: "Can we write to you?"
+          }
+        },
+        items: [
+          {
+            value: "Yes",
+            text: "Yes",
+            checked: data.canWeWrite === "Yes"
+          },
+          {
+            value: "No",
+            text: "No",
+            checked: data.canWeWrite === "No"
+          }
+        ],
+        errorMessage: errors['can-we-write'],
+        id: "canWeWrite",
+        name: "canWeWrite"
       }) }}
 
       {{ govukButton({text: "Save and continue"}) }}
