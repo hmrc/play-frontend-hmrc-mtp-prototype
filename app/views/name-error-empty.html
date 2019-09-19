@@ -16,17 +16,43 @@ Your name – Personal details – {{serviceName}} – GOV.UK
   <div class="govuk-grid-column-two-thirds">
     <form action="/name" method="post">
 
+      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+
+          <ul class="govuk-list govuk-error-summary__list">
+
+            <li>
+
+              <a href="#name">Enter your full name</a>
+
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+
       <header class="hmrc-page-heading">
         <h1 class="govuk-heading-xl">Your name</h1><p class="govuk-caption-xl hmrc-caption-xl"><span class="govuk-visually-hidden">This section is </span>Personal details</p></header>
 
 
-      <div class="govuk-form-group">
+
+      <div class="govuk-form-group govuk-form-group--error">
         <label class="govuk-label" for="name">
           What is your name?
         </label>
 
-        <input class="govuk-input" id="name" name="name" type="text" value="{{data.name}}">
+
+        <span id="name-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> Enter your full name
+        </span>
+
+        <input class="govuk-input govuk-input--error" id="name" name="name" type="text" aria-describedby="name-error" value="{{data.name}}">
       </div>
+
       {{ govukButton({text: "Save and continue"}) }}
     </form>
   </div>
