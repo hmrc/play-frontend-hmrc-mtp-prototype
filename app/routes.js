@@ -30,22 +30,17 @@ router.post('/confirm', (req, res) => {
 
 router.post('/name', (req, res) => {
   if (!req.body.name) {
-    const errors = {name: 'Enter your full name'}
-    res.render('name.html', prepareErrorList(errors))
+    res.render('name-error-empty.html')
   } else {
     res.redirect('/phone-number')
   }
 })
 
 router.post('/phone-number', (req, res) => {
-  const errors = {}
   if (!req.body.phoneNumber) {
-    errors['phone-number'] = 'Enter your phone number'
+    res.render('phone-number-error-empty.html')
   } else if (!req.body.phoneNumber.match(/^0[0-9]{10}$/)) {
-    errors['phone-number'] = 'Enter a valid UK phone number'
-  }
-  if (Object.keys(errors).length > 0) {
-    res.render('phone-number.html', prepareErrorList(errors))
+    res.render('phone-number-error-invalid.html')
   } else {
     res.redirect('/address')
   }
