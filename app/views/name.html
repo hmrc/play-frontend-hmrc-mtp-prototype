@@ -21,14 +21,12 @@ Your name – Personal details – {{serviceName}} – GOV.UK
           errorList: preparedErrorList
         }) }}
       {% endif %}
-      {{ hmrcPageHeading({
-        text: "Your name",
-        section: "Personal details"
-      }) }}
 
       {{ govukInput({
         label: {
-          text: "What is your name?"
+          text: "What is your name?",
+          classes: "govuk-label--l",
+          isPageHeading: true
         },
         errorMessage: errors.name,
         value: data.name,

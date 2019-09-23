@@ -21,14 +21,12 @@ Your address – Personal details – {{serviceName}} – GOV.UK
           errorList: preparedErrorList
         }) }}
       {% endif %}
-      {{ hmrcPageHeading({
-        text: "Your address",
-        section: "Personal details"
-      }) }}
 
       {{ govukTextarea({
         label: {
-          text: "What is your address?"
+          text: "What is your address?",
+          classes: "govuk-label--l",
+          isPageHeading: true
         },
         value: data.address,
         errorMessage: errors.address,

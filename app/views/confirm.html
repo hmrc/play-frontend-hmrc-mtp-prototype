@@ -11,15 +11,13 @@ Application Complete – Personal details – {{serviceName}} – GOV.UK
   <div class="govuk-grid-column-two-thirds">
     {{ govukPanel({
       titleText: "Application complete",
-      html: "Your reference number<br><strong>HDJ2123F</strong>"
+      html: "Your reference number <strong>HDJ2123F</strong>"
     }) }}
-
-    <p class="govuk-body">We have sent you a confirmation email.</p>
 
     <h2 class="govuk-heading-m">What happens next</h2>
 
     <p class="govuk-body">
-      We’ve sent your application to Fictional Ministry of Facts.
+      We have sent your application to Fictional Ministry of Facts.
     </p>
     <p class="govuk-body">
       They will contact you either to confirm your registration, or to ask for more information.
@@ -27,4 +25,10 @@ Application Complete – Personal details – {{serviceName}} – GOV.UK
 
   </div>
 </div>
+
+<style>
+  .govuk-panel__body strong {
+    display: block;
+  }
+</style>
 {% endblock %}

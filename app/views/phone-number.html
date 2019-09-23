@@ -21,14 +21,12 @@ Your phone number – Personal details – {{serviceName}} – GOV.UK
           errorList: preparedErrorList
         }) }}
       {% endif %}
-      {{ hmrcPageHeading({
-        text: "Your phone number",
-        section: "Personal details"
-      }) }}
 
       {{ govukInput({
         label: {
-          text: "What is your phone number?"
+          text: "What is your phone number?",
+          classes: "govuk-label--l",
+          isPageHeading: true
         },
         value: data.phoneNumber,
         errorMessage: errors['phone-number'],

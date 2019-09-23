@@ -53,23 +53,6 @@ Check your answers – Personal details – {{serviceName}} – GOV.UK
         },
         {
           key: {
-            text: "Address"
-          },
-          value: {
-            html: data.formattedAddress
-          },
-          actions: {
-            items: [
-              {
-                href: "/address",
-                text: "Change",
-                visuallyHiddenText: "address"
-              }
-            ]
-          }
-        },
-        {
-          key: {
             text: "Can we write to you?"
           },
           value: {
@@ -84,7 +67,8 @@ Check your answers – Personal details – {{serviceName}} – GOV.UK
               }
             ]
           }
-        }
+        },
+        preparedAddress
       ]
     }) }}
 

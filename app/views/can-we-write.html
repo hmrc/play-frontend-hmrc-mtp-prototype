@@ -25,15 +25,13 @@ Can we write to you – Personal details – {{serviceName}} – GOV.UK
           errorList: preparedErrorList
         }) }}
       {% endif %}
-      {{ hmrcPageHeading({
-        text: "Contact preferences",
-        section: "Personal details"
-      }) }}
 
       {{ govukRadios({
         fieldset: {
           legend: {
-            text: "Can we write to you?"
+            text: "Can we write to you?",
+            classes: "govuk-label--l",
+            isPageHeading: true
           }
         },
         items: [
@@ -49,7 +47,7 @@ Can we write to you – Personal details – {{serviceName}} – GOV.UK
           }
         ],
         errorMessage: errors['can-we-write'],
-        id: "canWeWrite",
+        idPrefix: "can-we-write",
         name: "canWeWrite"
       }) }}
 
