@@ -11,7 +11,7 @@ Application Complete – Personal details – {{serviceName}} – GOV.UK
   <div class="govuk-grid-column-two-thirds">
     {{ govukPanel({
       titleText: "Application complete",
-      html: "Your reference number<br><strong>HDJ2123F</strong>"
+      html: "Your reference number<strong>HDJ2123F</strong>"
     }) }}
 
     <p class="govuk-body">We have not sent you a confirmation email.</p>
@@ -27,4 +27,10 @@ Application Complete – Personal details – {{serviceName}} – GOV.UK
 
   </div>
 </div>
+
+<style>
+  .govuk-panel__body strong {
+    display: block;
+  }
+</style>
 {% endblock %}

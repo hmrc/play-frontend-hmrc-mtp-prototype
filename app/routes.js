@@ -3,26 +3,6 @@ const router = express.Router()
 
 // Add your routes here - above the module.exports line
 
-router.use('/summary', (req, res, next) => {
-  req.session.data.formattedAddress = (req.session.data.address || '').replace(/\n/g, '<br/>')
-  next()
-})
-
-const prepareErrorList = (errorsIn) => {
-  const errors = {}
-  const preparedErrorList = []
-
-  Object.keys(errorsIn).forEach(key => {
-    preparedErrorList.push({ href: `#${key}`, text: errorsIn[key] })
-    errors[key] = { text: errorsIn[key] }
-  })
-
-  return {
-    preparedErrorList,
-    errors
-  }
-}
-
 router.post('/confirm', (req, res) => {
   req.session.data = {submitted: true}
   res.redirect('/confirm')
@@ -42,25 +22,36 @@ router.post('/phone-number', (req, res) => {
   } else if (!req.body.phoneNumber.match(/^0[0-9]{10}$/)) {
     res.render('phone-number-error-invalid.html')
   } else {
-    res.redirect('/address')
-  }
-})
-
-router.post('/address', (req, res) => {
-  if (!req.body.address.match(/[a-zA-Z0-9]+/)) {
-    const errors = {address: 'Enter your address'}
-    res.render('address.html', prepareErrorList(errors))
-  } else {
     res.redirect('/can-we-write')
   }
 })
 
 router.post('/can-we-write', (req, res) => {
   if (!req.body.canWeWrite) {
-    const errors = {'can-we-write': 'Please provide an answer'}
-    res.render('can-we-write.html', prepareErrorList(errors))
+    res.render('can-we-write-error-empty.html')
+  } else if (req.body.canWeWrite === 'Yes') {
+    res.redirect('/address')
   } else {
     res.redirect('/summary')
+  }
+})
+
+router.post('/address', (req, res) => {
+  if (!req.body.address.match(/[a-zA-Z0-9]+/)) {
+    res.render('address-error-empty.html')
+  } else {
+    res.redirect('/summary')
+  }
+})
+
+router.get('/summary', (req, res) => {
+  const sessionData = req.session.data
+  if (sessionData.address) {
+    res.render('summary-with-address', {
+      formattedAddress: (sessionData.address || 'No Address').replace(/\n/g, '<br/>')
+    })
+  } else {
+    res.render('summary-without-address')
   }
 })
 
@@ -75,9 +66,9 @@ const redirectIfNotSet = (from, keys, to) => {
 }
 
 redirectIfNotSet('/confirm', ['submitted'], '/summary')
-redirectIfNotSet('/summary', ['name', 'phoneNumber', 'address', 'canWeWrite'], '/can-we-write')
-redirectIfNotSet('/can-we-write', ['name', 'phoneNumber', 'address'], '/address')
-redirectIfNotSet('/address', ['name', 'phoneNumber'], '/phone-number')
+redirectIfNotSet('/summary', ['name', 'phoneNumber', 'canWeWrite'], '/address')
+redirectIfNotSet('/address', ['name', 'phoneNumber', 'canWeWrite'], '/can-we-write')
+redirectIfNotSet('/can-we-write', ['name', 'phoneNumber'], '/address')
 redirectIfNotSet('/phone-number', ['name'], '/name')
 
 module.exports = router

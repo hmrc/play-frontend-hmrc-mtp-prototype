@@ -15,18 +15,15 @@ Your name – Personal details – {{serviceName}} – GOV.UK
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <form action="/name" method="post">
-
-      <header class="hmrc-page-heading">
-        <h1 class="govuk-heading-xl">Your name</h1><p class="govuk-caption-xl hmrc-caption-xl"><span class="govuk-visually-hidden">This section is </span>Personal details</p></header>
-
-
       <div class="govuk-form-group">
-        <label class="govuk-label" for="name">
-          What is your name?
-        </label>
-
+        <h1 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--l" for="name">
+            What is your name?
+          </label>
+        </h1>
         <input class="govuk-input" id="name" name="name" type="text" value="{{data.name}}">
       </div>
+
       {{ govukButton({text: "Save and continue"}) }}
     </form>
   </div>

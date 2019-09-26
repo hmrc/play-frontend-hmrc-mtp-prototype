@@ -4,17 +4,18 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-Your name – Personal details – {{serviceName}} – GOV.UK
+Your address – Personal details – {{serviceName}} – GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
-{{ govukBackLink({href: '/'})}}
+{{ govukBackLink({href: '/phone-number'})}}
 {% endblock %}
 
 {% block content %}
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form action="/name" method="post">
+    <form action="/address" method="post">
 
       <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
         <h2 class="govuk-error-summary__title" id="error-summary-title">
@@ -26,7 +27,7 @@ Your name – Personal details – {{serviceName}} – GOV.UK
 
             <li>
 
-              <a href="#name">Enter your full name</a>
+              <a href="#address">Enter your address</a>
 
             </li>
 
@@ -40,8 +41,8 @@ Your name – Personal details – {{serviceName}} – GOV.UK
 
       <div class="govuk-form-group govuk-form-group--error">
         <h1 class="govuk-label-wrapper">
-          <label class="govuk-label govuk-label--l" for="name">
-            What is your name?
+          <label class="govuk-label govuk-label--l" for="address">
+            What is your address?
           </label>
 
         </h1>
@@ -49,11 +50,11 @@ Your name – Personal details – {{serviceName}} – GOV.UK
 
 
 
-        <span id="name-error" class="govuk-error-message">
-    <span class="govuk-visually-hidden">Error:</span> Enter your full name
+        <span id="address-error" class="govuk-error-message">
+    <span class="govuk-visually-hidden">Error:</span> Enter your address
   </span>
 
-        <input class="govuk-input govuk-input--error" id="name" name="name" type="text" aria-describedby="name-error">
+        <textarea class="govuk-textarea govuk-textarea--error" id="address" name="address" rows="5" aria-describedby="address-error"></textarea>
       </div>
 
 
@@ -70,4 +71,5 @@ Your name – Personal details – {{serviceName}} – GOV.UK
     </form>
   </div>
 </div>
+
 {% endblock %}
