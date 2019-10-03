@@ -46,3 +46,4 @@ lazy val testSettings: Seq[Def.Setting[_]] = Seq(
     "-Dconfig.resource=test.application.conf"
   )
 )
+libraryDependencies += "uk.gov.hmrc" %% "play-frontend-govuk" % "0.1.0-play-26-SNAPSHOT"

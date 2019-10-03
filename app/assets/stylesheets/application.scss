@@ -1,0 +1,24 @@
+$govuk-assets-path: "/play-mtp-frontend/assets/lib/govuk-frontend/govuk/assets/";
+
+@import "lib/govuk-frontend/govuk/all";
+
+.hmrc-page-heading {
+  display: table;
+  width: 100%;
+  margin-top: 1.875em;
+  margin-bottom: 0.9375em;
+  padding-top: 8px;
+  clear: both;
+  table-layout: fixed;
+}
+
+@media (min-width: 40.0625em) {
+  .hmrc-page-heading {
+    margin-top: 1.875em;
+    margin-bottom: 1.25em;
+  }
+}
+
+.hmrc-page-heading .hmrc-caption-xl {
+  display: table-header-group;
+}

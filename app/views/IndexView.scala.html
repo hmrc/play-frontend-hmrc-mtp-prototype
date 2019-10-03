@@ -14,10 +14,32 @@
  * limitations under the License.
  *@
 
-@this()
+@import uk.gov.hmrc.govukfrontend.views.html.components.implicits._
+@import uk.gov.hmrc.govukfrontend.views.html.components._
+
+@this(layout: Layout)
 
 @()(implicit request: Request[_], messages: Messages)
 
+@layout() {
+    <header class="hmrc-page-heading">
+    <h1 class="govuk-heading-xl">Personal Details Account</h1></header>
 
-<h1>@messages("index.heading")</h1>
+
+    <p class="govuk-body">Use this service to:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>enter your personal details</li>
+      <li>be told they’ve been saved even though they haven’t</li>
+      <li>try out different ways of creating services</li>
+    </ul>
+
+    <p class="govuk-body">Registering takes around 1 minute.</p>
+
+    @Button(
+        href = Some(routes.NameController.onPageLoad(NormalMode).url),
+        isStartButton = true
+    )(Text(messages("index.continue")))
+}
+
 

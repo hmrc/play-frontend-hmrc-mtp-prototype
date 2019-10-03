@@ -16,10 +16,31 @@
 
 @import controllers.routes._
 @import models.Mode
+@import uk.gov.hmrc.govukfrontend.views.html.components.implicits._
+@import uk.gov.hmrc.govukfrontend.views.html.components._
+@import views.html.helper.CSRF
 
-@this()
+@this(layout: Layout)
+
 
 @(form: Form[_], mode: Mode)(implicit request: Request[_], messages: Messages)
+@layout(beforeContentBlock = Some(BackLink(href = IndexController.onPageLoad().url)())) {
 
-<h1>@messages("name.heading")</h1>
+    @helper.form(action = routes.NameController.onSubmit(mode)) {
+        @CSRF.formField
 
+        @Radios(
+            fieldsetParams = Some(FieldsetParams(
+                legend = Some(Legend(content = Text("This is the title")))
+            )),
+            name = "contact-preference",
+            items = Seq(
+                RadioItem(content = Text("Yes")),
+                RadioItem(content = Text("No"))
+            )
+
+        )
+
+        @Button()(Text(messages("site.continue")))
+    }
+}

@@ -34,7 +34,7 @@ site.hidden-delete = Delete {0}
 site.hidden-edit = Change {0}
 site.no = No
 site.yes = Yes
-site.continue = SAve and continue
+site.continue = Save and continue
 site.service_name = play-mtp-frontend
 site.textarea.char_limit = (Limit is {0} characters)
 
@@ -63,3 +63,5 @@ phoneNumber.heading = What is your phone number?
 phoneNumber.checkYourAnswersLabel = Phone number
 phoneNumber.error.required = Enter your phone number
 phoneNumber.error.length = Phone number must be 20 characters or less
+
+index.continue = Start Now

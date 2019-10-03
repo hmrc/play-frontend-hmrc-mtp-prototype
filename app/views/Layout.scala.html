@@ -1,0 +1,106 @@
+@*
+ * Copyright 2019 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import uk.gov.hmrc.govukfrontend.views.html.components.{BackLink => GovukBackLink, Footer => GovukFooter, _}
+@import controllers.routes._
+
+@this(
+        govukTemplate: GovukTemplate,
+        phaseBanner: PhaseBanner,
+        head: head,
+        header: Header,
+        footer: GovukFooter,
+        scripts: scripts,
+        backLink: GovukBackLink
+)
+
+@(pageTitle: Option[String] = None,
+        headBlock: Option[Html] = None,
+        headerBlock: Option[Html] = None,
+        beforeContentBlock: Option[Html] = None,
+        bodyEndBlock: Option[Html] = None)(contentBlock: Html)(implicit request: Request[_], messages: Messages)
+
+@headDefault = {
+@if(headBlock.isDefined) {
+    @headBlock
+} else {
+    @head()
+}
+}
+
+@headerDefault = {
+@if(headerBlock.isDefined) {
+    @headerBlock
+} else {
+    @header(HeaderParams(
+        homepageUrl = Some("/play-prototype-frontend"),
+        serviceName = Some("Personal Details Account"),
+        serviceUrl = Some("/play-prototype-frontend"),
+        containerClasses = "govuk-width-container",
+        assetsPath = Some("/assets")))
+}
+}
+
+@phaseBannerMessage = {
+    This is a new service – your <a class="govuk-link" href="#"> feedback</a> will help us to improve it.
+}
+
+@phaseBannerDefault = {
+@defining(TagParams(Text("beta"))) { tagParams =>
+    @phaseBanner(tagParams = Some(tagParams))(HtmlContent(phaseBannerMessage))
+}
+}
+
+@beforeContentDefault = {
+@if(beforeContentBlock.isDefined) {
+    @beforeContentBlock
+} else {
+}
+}
+
+@footerDefault = {
+    @footer(meta = Some(Meta(items =
+    Seq(
+    FooterItem(href= Some("https://govuk-prototype-kit.herokuapp.com/"), text= Some("GOV.UK Prototype Kit v9.1.0"))
+    ))))
+}
+
+@bodyEndDefault = {
+@if(bodyEndBlock.isDefined) {
+    @bodyEndBlock
+} else {
+    @scripts()
+}
+}
+
+@mainContentDefault = {
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+        @contentBlock
+        </div>
+    </div>
+}
+
+@govukTemplate(
+    htmlLang = Some("en"),
+    pageTitle = pageTitle,
+    headBlock = Some(headDefault),
+    headerBlock = headerDefault,
+    beforeContentBlock = Some(beforeContentDefault),
+    footerBlock = footerDefault,
+    mainClasses = Some("govuk-main-wrapper--auto-spacing"),
+    bodyEndBlock = Some(bodyEndDefault))(mainContentDefault)
+
